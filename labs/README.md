@@ -1,6 +1,6 @@
 # Notebook labs
 
-Write and check small, real Triton kernels in your own notebook runtime. Each lab has TODO exercises,
+Write and check small, real Triton kernels, or fine-tune a small open model (LAB-18), in your own notebook runtime. Each lab has TODO exercises,
 PyTorch correctness checks, and a complete Solution section after “try first”. Run cells in order;
 starter failures are expected and print what is wrong. Run all continues to the solutions, checks them
 strictly, and then measures them if a GPU is available. Each notebook stands alone and needs no other files
@@ -15,6 +15,7 @@ by those services. These links open their sites; the static Academy never runs o
 | [LAB-14 · Fuse SiLU × multiply](lab-14-fuse-silu-mul.ipynb) · ~20 min | I28 | [Open in Colab](https://colab.research.google.com/github/atabak-eghbal/tile-and-error-labs/blob/main/labs/lab-14-fuse-silu-mul.ipynb) · [Open in Kaggle](https://kaggle.com/kernels/welcome?src=https://github.com/atabak-eghbal/tile-and-error-labs/blob/main/labs/lab-14-fuse-silu-mul.ipynb) |
 | [LAB-15 · Fused softmax](lab-15-fused-softmax.ipynb) · ~25 min | I34 (also visual G10/G12) | [Open in Colab](https://colab.research.google.com/github/atabak-eghbal/tile-and-error-labs/blob/main/labs/lab-15-fused-softmax.ipynb) · [Open in Kaggle](https://kaggle.com/kernels/welcome?src=https://github.com/atabak-eghbal/tile-and-error-labs/blob/main/labs/lab-15-fused-softmax.ipynb) |
 | [LAB-17 · Benchmark harness](lab-17-benchmark-harness.ipynb) · ~20 min | I35–I37 | [Open in Colab](https://colab.research.google.com/github/atabak-eghbal/tile-and-error-labs/blob/main/labs/lab-17-benchmark-harness.ipynb) · [Open in Kaggle](https://kaggle.com/kernels/welcome?src=https://github.com/atabak-eghbal/tile-and-error-labs/blob/main/labs/lab-17-benchmark-harness.ipynb) |
+| [LAB-18 · LoRA fine-tune](lab-18-lora-finetune.ipynb) · ~25 min | I38 | [Open in Colab](https://colab.research.google.com/github/atabak-eghbal/tile-and-error-labs/blob/main/labs/lab-18-lora-finetune.ipynb) · [Open in Kaggle](https://kaggle.com/kernels/welcome?src=https://github.com/atabak-eghbal/tile-and-error-labs/blob/main/labs/lab-18-lora-finetune.ipynb) |
 
 ## Choose a GPU in Colab
 
@@ -50,6 +51,13 @@ collecting samples. Logical tensor bytes estimate effective GB/s; caches and run
 physical memory-bus traffic. Only identified T4, P100 16 GB and H100 SXM variants show a datasheet-peak percentage;
 unknown variants show GB/s without a percentage. A fixed speedup is never promised. LAB-17 measures an isolated
 kernel, explaining which extra request measurements are needed for a serving load test.
+
+## LAB-18: LoRA on a GPU or a CPU
+
+LAB-18 uses PyTorch, Transformers and PEFT, not Triton. Setup installs the pinned transformers 5.23.0, peft 0.22.0
+and accelerate 1.16.0 in your notebook runtime if they are missing, and the model (Qwen3-0.6B) downloads from the
+Hugging Face Hub with no account or key. With a CUDA GPU it trains 60 steps; without one it trains 30 steps on the
+CPU, more slowly, and runs the same checks. Step times are labelled **your run**; no hosted-service speed is promised.
 
 Return to the [Academy Labs track](https://tile-and-error-academy.vercel.app/#labs) or the
 [Tile & Error channel](https://www.youtube.com/@tileanderror).
